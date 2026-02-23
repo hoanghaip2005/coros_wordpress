@@ -1,0 +1,193 @@
+/* 1. Thiết lập màu nền trắng và border cho toàn bảng */
+.tablepress-id-1,
+.tablepress-id-1 th,
+.tablepress-id-1 td {
+    border: none !important;
+    /* Ẩn toàn bộ border mặc định */
+    border-top: 1px solid rgb(229, 231, 235) !important;
+    /* Border top */
+    border-bottom: 1px solid rgb(229, 231, 235) !important;
+    /* Border bottom */
+    background-color: #ffffff !important;
+    padding: 9px 16px !important;
+    border-collapse: collapse !important;
+}
+
+/* 2. Ẩn hàng đầu tiên (header) */
+.tablepress-id-1 .row-1 {
+    display: none !important;
+}
+
+/* 3. Thêm border right cho cột 1 (tên thông số) */
+.tablepress-id-1 .column-1 {
+    border-right: 1px solid rgb(229, 231, 235) !important;
+}
+
+/* 4. Ẩn border cho hàng cuối cùng để bảng sạch sẽ */
+.tablepress-id-1 tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* 3. Định dạng tiêu đề nhóm (SIZE AND WEIGHT, DISPLAY...) */
+/* Thay số 2, 5, 9... bằng số hàng tiêu đề phụ của bạn */
+.tablepress-id-1 .row-2 td,
+.tablepress-id-1 .row-5 td,
+.tablepress-id-1 .row-9 td,
+.tablepress-id-1 .row-14 td,
+.tablepress-id-1 .row-19 td,
+.tablepress-id-1 .row-21 td,
+.tablepress-id-1 .row-25 td,
+.tablepress-id-1 .row-29 td,
+.tablepress-id-1 .row-29 td,
+.tablepress-id-1 .row-36 td,
+.tablepress-id-1 .row-39 td,
+.tablepress-id-1 .row-42 td,
+.tablepress-id-1 .row-45 td,
+.tablepress-id-1 .row-53 td {
+    background-color: #ffffff !important;
+    font-weight: 400;
+    color: rgb(98, 98, 98);
+    text-transform: uppercase;
+    font-size: 20px;
+    padding-top: 40px !important;
+    /* Tạo khoảng cách trống giữa các bảng */
+    border-bottom: none !important;
+    /* Tiêu đề nhóm không cần gạch dưới sát chữ */
+    text-align: right !important;
+    /* Căn trái cho tiêu đề nhóm */
+    border-right: none !important;
+    /* Ẩn border right cho tiêu đề nhóm */
+}
+
+/* 5. Làm nổi bật cột tên thông số bên trái (Dimensions, Weight...) */
+.tablepress-id-1 .column-1 {
+    font-weight: bold;
+    color: rgb(29, 33, 41);
+    width: 300px;
+    text-align: right;
+    /* Căn phải để sát với nội dung so sánh */
+    padding-right: 30px !important;
+    border-right: 1px solid rgb(229, 231, 235) !important;
+    /* Đã khai báo ở trên nhưng nhắc lại để đảm bảo */
+}
+
+/* 5b. Chia đều 3 cột sản phẩm - mỗi cột chiếm ~26.67% */
+.tablepress-id-1 .column-2,
+.tablepress-id-1 .column-3,
+.tablepress-id-1 .column-4 {
+    width: 322px !important;
+    min-width: 322px !important;
+    max-width: 322px !important;
+}
+
+/* 5c. Đảm bảo bảng có width cố định, không tự động điều chỉnh */
+.tablepress-id-1 {
+    table-layout: fixed !important;
+    max-width: 1266px !important;
+    margin: 0 auto !important;
+    /* Center bảng khi màn hình rộng hơn */
+}
+
+/* 6. Căn giữa nội dung các sản phẩm */
+.tablepress-id-1 td:not(.column-1) {
+    text-align: left;
+    color: #444;
+    vertical-align: top;
+}
+
+/* 7. Hiệu ứng hover cho các dòng */
+.tablepress-id-1 tbody tr:hover td {
+    background-color: #f9fafb !important;
+    transition: background-color .2s ease;
+}
+
+/* 8. Hỗ trợ xuống dòng trong cell */
+.tablepress-id-1 td {
+    white-space: normal !important;
+    /* Cho phép xuống dòng tự động */
+    word-wrap: break-word !important;
+    /* Ngắt từ nếu quá dài */
+    line-height: 1.8 !important;
+    /* Khoảng cách giữa các dòng */
+}
+
+/* 9. Style cho text nhỏ trong cột 1 (như GPS, GLONASS...) */
+.tablepress-id-1 .column-1 small,
+.tablepress-id-1 .column-1 span {
+    font-size: 14px;
+    font-weight: normal;
+    color: #666;
+    display: block;
+    margin-top: 2px;
+}
+
+/* 10. Style cho text nhỏ trong các cột giá trị */
+.tablepress-id-1 td:not(.column-1) small,
+.tablepress-id-1 td:not(.column-1) span {
+    font-size: 14px;
+    color: #666;
+    display: block;
+    margin-top: 2px;
+}
+
+/* 10b. Mặc định tất cả text trong ô đều lớn và bold */
+.tablepress-id-1 td:not(.column-1) {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(29, 33, 41);
+    line-height: 1.2;
+}
+
+/* 10c. Chỉ những text có class subtitle mới nhỏ và màu xám */
+.tablepress-id-1 td:not(.column-1) .subtitle {
+    font-size: 12px;
+    font-weight: 400;
+    color: #626262 !important;
+    display: block;
+    margin-bottom: 4px;
+    /* Khoảng cách giữa các cặp giá trị */
+}
+
+/* 10d. Small tag cũng tự động xuống dòng và có khoảng cách */
+.tablepress-id-1 td:not(.column-1) small {
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    color: #626262 !important;
+    display: block;
+    margin-bottom: 4px;
+    /* Khoảng cách giữa các cặp giá trị */
+}
+
+/* 11. Ẩn các cột từ cột 5 trở đi (cột dự phòng cho dropdown chọn) */
+/* Cột 1 = tên thông số, Cột 2-4 = 3 sản phẩm hiển thị, Cột 5+ = ẩn (dữ liệu dự phòng) */
+.tablepress.tablepress-id-1 .column-5,
+.tablepress.tablepress-id-1 .column-6,
+.tablepress.tablepress-id-1 .column-7,
+.tablepress.tablepress-id-1 .column-8,
+.tablepress.tablepress-id-1 .column-9,
+.tablepress.tablepress-id-1 .column-10,
+.tablepress.tablepress-id-1 .column-11,
+.tablepress.tablepress-id-1 .column-12,
+.tablepress.tablepress-id-1 .column-13,
+.tablepress.tablepress-id-1 .column-14,
+.tablepress.tablepress-id-1 .column-15,
+.tablepress.tablepress-id-1 .column-16,
+.tablepress.tablepress-id-1 .column-17,
+.tablepress.tablepress-id-1 .column-18,
+.tablepress.tablepress-id-1 .column-19,
+.tablepress.tablepress-id-1 .column-20 {
+    display: none !important;
+}
+
+/* Yêu cầu 3: Cột 2, 3, 4 luôn hiển thị - không cần CSS thêm vì mặc định đã hiển thị */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

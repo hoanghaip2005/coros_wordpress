@@ -1,0 +1,151 @@
+/* Section chứa row */
+.section-comparison {}
+
+/* Custom Dropdown */
+.product-dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.dropdown-button {
+  width: 100%;
+  padding: 4px 40px 4px 15px;
+  background: white;
+  border: none;
+  border-bottom: 1px solid #000;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.dropdown-button:hover {
+  border-color: #999;
+}
+
+.dropdown-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-button.active .dropdown-icon {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.dropdown-menu.active {
+  max-height: 300px;
+  opacity: 1;
+  overflow-y: auto;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.dropdown-item {
+  padding: 12px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #000;
+  transition: background 0.2s ease;
+  border-bottom: 1px solid #f0f0f0;
+  pointer-events: none;
+}
+
+.dropdown-menu.active .dropdown-item {
+  pointer-events: auto;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item:hover {
+  background: #f5f5f5;
+}
+
+.dropdown-item.selected {
+  background: #e8f4fd;
+  color: #2196F3;
+  font-weight: 600;
+}
+
+/* Custom scrollbar cho dropdown */
+.dropdown-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Ẩn cột thứ 4 mặc định */
+.comparison-table .col:nth-child(4) {
+  display: none;
+}
+
+.comparison-table .col:nth-child(4).active {
+  display: block;
+}
+
+.anh-bien-doi img {
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+.anh-bien-doi .box-image,
+.anh-bien-doi .img,
+.anh-bien-doi .image {
+  background: none !important;
+}
+
+.anh-bien-doi img.loaded,
+.anh-bien-doi .loaded img {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.anh-bien-doi .loading::before,
+.anh-bien-doi .loading::after {
+  display: none !important;
+}

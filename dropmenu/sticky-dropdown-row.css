@@ -1,0 +1,44 @@
+/* 
+ * CSS để làm sticky phần dropdown row (CHỈ 3 cột dropdown, không bao gồm image)
+ * 
+ * CẤU TRÚC YÊU CẦU:
+ * - Row 1: Chứa 3 Column (mỗi column có 1 HTML dropdown) ← Thêm class "dropdown-sticky-row"
+ * - Row 2: Chứa 3 Column (mỗi column có 1 Image Box) ← Không sticky, scroll bình thường
+ */
+
+.dropdown-sticky-row {
+    position: sticky;
+    top: 132px;
+    z-index: 100;
+    transition: box-shadow 0.3s ease, top 0.3s ease;
+}
+
+/* Dùng pseudo-element để tạo background full width */
+.dropdown-sticky-row::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-color: #ffffff;
+    z-index: -1;
+}
+
+/* Đảm bảo dropdown menu không bị cắt khi sticky */
+.dropdown-sticky-row .product-dropdown {
+    position: relative;
+    padding: 0px 10px;
+    z-index: 101;
+}
+
+/* Dropdown menu hiển thị đầy đủ */
+.dropdown-sticky-row .dropdown-menu {
+    max-height: 400px;
+}
+
+.dropdown-sticky-row .col {
+    padding: 10px 5px;
+}
