@@ -40,5 +40,23 @@
 }
 
 .dropdown-sticky-row .col {
-    padding: 10px 5px;
+    padding: 0px 5px;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .dropdown-sticky-row {
+        display: none !important;
+    }
+
+    .dropdown-sticky-row .col {
+        padding: 0px 3px;
+        float: none !important;
+    }
+
+    .dropdown-sticky-row .product-dropdown {
+        padding: 0px 5px;
+    }
 }

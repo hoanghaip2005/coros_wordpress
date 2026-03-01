@@ -6,8 +6,6 @@
     /* Ẩn toàn bộ border mặc định */
     border-top: 1px solid rgb(229, 231, 235) !important;
     /* Border top */
-    border-bottom: 1px solid rgb(229, 231, 235) !important;
-    /* Border bottom */
     background-color: #ffffff !important;
     padding: 9px 16px !important;
     border-collapse: collapse !important;
@@ -15,6 +13,13 @@
 
 /* 2. Ẩn hàng đầu tiên (header) */
 .tablepress-id-1 .row-1 {
+    display: none !important;
+}
+
+/* 2b. Ẩn 3 hàng data (Price, Image URL, Product URL) */
+.tablepress-id-1 .row-2,
+.tablepress-id-1 .row-3,
+.tablepress-id-1 .row-4 {
     display: none !important;
 }
 
@@ -29,27 +34,26 @@
 }
 
 /* 3. Định dạng tiêu đề nhóm (SIZE AND WEIGHT, DISPLAY...) */
-/* Thay số 2, 5, 9... bằng số hàng tiêu đề phụ của bạn */
-.tablepress-id-1 .row-2 td,
+/* Đã +3 do thêm 3 row data (Price, Image, Product URL) */
 .tablepress-id-1 .row-5 td,
-.tablepress-id-1 .row-9 td,
-.tablepress-id-1 .row-14 td,
-.tablepress-id-1 .row-19 td,
-.tablepress-id-1 .row-21 td,
-.tablepress-id-1 .row-25 td,
-.tablepress-id-1 .row-29 td,
-.tablepress-id-1 .row-29 td,
-.tablepress-id-1 .row-36 td,
+.tablepress-id-1 .row-8 td,
+.tablepress-id-1 .row-12 td,
+.tablepress-id-1 .row-17 td,
+.tablepress-id-1 .row-22 td,
+.tablepress-id-1 .row-24 td,
+.tablepress-id-1 .row-28 td,
+.tablepress-id-1 .row-32 td,
 .tablepress-id-1 .row-39 td,
 .tablepress-id-1 .row-42 td,
 .tablepress-id-1 .row-45 td,
-.tablepress-id-1 .row-53 td {
+.tablepress-id-1 .row-48 td,
+.tablepress-id-1 .row-56 td {
     background-color: #ffffff !important;
     font-weight: 400;
     color: rgb(98, 98, 98);
     text-transform: uppercase;
     font-size: 20px;
-    padding-top: 40px !important;
+    padding: 40px 0 10px !important;
     /* Tạo khoảng cách trống giữa các bảng */
     border-bottom: none !important;
     /* Tiêu đề nhóm không cần gạch dưới sát chữ */
@@ -71,21 +75,24 @@
     /* Đã khai báo ở trên nhưng nhắc lại để đảm bảo */
 }
 
-/* 5b. Chia đều 3 cột sản phẩm - mỗi cột chiếm ~26.67% */
-.tablepress-id-1 .column-2,
-.tablepress-id-1 .column-3,
-.tablepress-id-1 .column-4 {
-    width: 322px !important;
-    min-width: 322px !important;
-    max-width: 322px !important;
-}
+/* 5b. Chia đều 3 cột sản phẩm - DESKTOP ONLY */
+/* 5c. Đảm bảo bảng có width cố định, không tự động điều chỉnh - DESKTOP ONLY */
+@media (min-width: 769px) {
 
-/* 5c. Đảm bảo bảng có width cố định, không tự động điều chỉnh */
-.tablepress-id-1 {
-    table-layout: fixed !important;
-    max-width: 1266px !important;
-    margin: 0 auto !important;
-    /* Center bảng khi màn hình rộng hơn */
+    .tablepress-id-1 .column-2,
+    .tablepress-id-1 .column-3,
+    .tablepress-id-1 .column-4 {
+        width: 322px !important;
+        min-width: 322px !important;
+        max-width: 322px !important;
+    }
+
+    .tablepress-id-1 {
+        table-layout: fixed !important;
+        max-width: 1266px !important;
+        margin: 0 auto !important;
+        /* Center bảng khi màn hình rộng hơn */
+    }
 }
 
 /* 6. Căn giữa nội dung các sản phẩm */
@@ -189,5 +196,175 @@
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+/* ============================================
+   MOBILE RESPONSIVE - 2 COLUMNS LAYOUT
+   ============================================ */
+@media (max-width: 768px) {
+
+    /* Force wrapper/container to be 100% width */
+    .tablepress-id-1-wrapper,
+    .tablepress-scroll-wrapper {
+        max-width: 100% !important;
+        width: 100% !important;
+        overflow-x: visible !important;
+    }
+
+    /* Hide 3rd product column in table */
+    .tablepress.tablepress-id-1 .column-4 {
+        display: none !important;
+    }
+
+    /* CRITICAL: Override desktop fixed widths */
+    .tablepress-id-1 {
+        max-width: 100% !important;
+        width: 100% !important;
+        table-layout: auto !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Override desktop column widths (322px) */
+    .tablepress-id-1 .column-2,
+    .tablepress-id-1 .column-3 {
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+    }
+
+    /* Make table cells behave like blocks, stacking vertically */
+    .tablepress-id-1 tbody tr {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Column 1 (labels): Full width, centered */
+    .tablepress-id-1 .column-1 {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        text-align: center !important;
+        font-weight: 500 !important;
+        /* font-PFDINTextPro-Medium */
+        font-size: 20px !important;
+        /* text-md-32 */
+        color: rgb(29, 33, 41) !important;
+        /* text-dark */
+        border-right: none !important;
+        display: block !important;
+        padding: 40px 0 10px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Section headers column-1: Larger, more prominent, CENTER aligned */
+    .tablepress-id-1 .row-5 td.column-1,
+    .tablepress-id-1 .row-8 td.column-1,
+    .tablepress-id-1 .row-12 td.column-1,
+    .tablepress-id-1 .row-17 td.column-1,
+    .tablepress-id-1 .row-22 td.column-1,
+    .tablepress-id-1 .row-24 td.column-1,
+    .tablepress-id-1 .row-28 td.column-1,
+    .tablepress-id-1 .row-32 td.column-1,
+    .tablepress-id-1 .row-39 td.column-1,
+    .tablepress-id-1 .row-42 td.column-1,
+    .tablepress-id-1 .row-45 td.column-1,
+    .tablepress-id-1 .row-48 td.column-1,
+    .tablepress-id-1 .row-56 td.column-1 {
+        font-size: 34px !important;
+        /* text-md-60 */
+        font-weight: bold !important;
+        /* DINCOROS-Bold */
+        color: rgb(98, 98, 98) !important;
+        /* text-[#626262] */
+        text-transform: uppercase !important;
+        text-align: center !important;
+    }
+
+    /* 2 product columns: equal width, 50% each, on second row */
+    .tablepress-id-1 .column-2,
+    .tablepress-id-1 .column-3 {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+        font-size: 18px !important;
+        text-align: center !important;
+        padding: 8px 10px !important;
+        display: block !important;
+        border-top: 0px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Hide column-3 and column-4 in section header rows */
+    .tablepress-id-1 .row-5 td.column-2,
+    .tablepress-id-1 .row-5 td.column-3,
+    .tablepress-id-1 .row-5 td.column-4,
+    .tablepress-id-1 .row-8 td.column-2,
+    .tablepress-id-1 .row-8 td.column-3,
+    .tablepress-id-1 .row-8 td.column-4,
+    .tablepress-id-1 .row-12 td.column-2,
+    .tablepress-id-1 .row-12 td.column-3,
+    .tablepress-id-1 .row-12 td.column-4,
+    .tablepress-id-1 .row-17 td.column-2,
+    .tablepress-id-1 .row-17 td.column-3,
+    .tablepress-id-1 .row-17 td.column-4,
+    .tablepress-id-1 .row-22 td.column-2,
+    .tablepress-id-1 .row-22 td.column-3,
+    .tablepress-id-1 .row-22 td.column-4,
+    .tablepress-id-1 .row-24 td.column-2,
+    .tablepress-id-1 .row-24 td.column-3,
+    .tablepress-id-1 .row-24 td.column-4,
+    .tablepress-id-1 .row-28 td.column-2,
+    .tablepress-id-1 .row-28 td.column-3,
+    .tablepress-id-1 .row-28 td.column-4,
+    .tablepress-id-1 .row-32 td.column-2,
+    .tablepress-id-1 .row-32 td.column-3,
+    .tablepress-id-1 .row-32 td.column-4,
+    .tablepress-id-1 .row-39 td.column-2,
+    .tablepress-id-1 .row-39 td.column-3,
+    .tablepress-id-1 .row-39 td.column-4,
+    .tablepress-id-1 .row-42 td.column-2,
+    .tablepress-id-1 .row-42 td.column-3,
+    .tablepress-id-1 .row-42 td.column-4,
+    .tablepress-id-1 .row-45 td.column-2,
+    .tablepress-id-1 .row-45 td.column-3,
+    .tablepress-id-1 .row-45 td.column-4,
+    .tablepress-id-1 .row-48 td.column-2,
+    .tablepress-id-1 .row-48 td.column-3,
+    .tablepress-id-1 .row-48 td.column-4,
+    .tablepress-id-1 .row-56 td.column-2,
+    .tablepress-id-1 .row-56 td.column-3,
+    .tablepress-id-1 .row-56 td.column-4 {
+        display: none !important;
+    }
+
+    /* Adjust table max-width for mobile */
+    .tablepress-id-1 {
+        max-width: 100% !important;
+        width: 100% !important;
+        table-layout: auto !important;
+    }
+
+    /* Adjust padding for mobile */
+    .tablepress-id-1 th,
+    .tablepress-id-1 td {
+        padding: 8px 10px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Smaller subtitle text */
+    .tablepress-id-1 td:not(.column-1) .subtitle {
+        font-size: 11px !important;
+    }
+
+    /* Styles for small tag in mobile */
+    .tablepress-id-1 td:not(.column-1) small {
+        color: rgb(98, 98, 98) !important;
+        font-size: 18px !important;
+        font-weight: 400 !important;
+        line-height: 28px !important;
+        text-align: center !important;
     }
 }

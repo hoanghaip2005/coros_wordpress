@@ -1,6 +1,3 @@
-/* Section chứa row */
-.section-comparison {}
-
 /* Custom Dropdown */
 .product-dropdown {
   position: relative;
@@ -23,7 +20,7 @@
   position: relative;
   transition: all 0.3s ease;
   color: #000;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 }
 
 .dropdown-button:hover {
@@ -53,7 +50,6 @@
   border: 1px solid #ddd;
   border-top: none;
   border-radius: 0 0 4px 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-height: 0;
   overflow: hidden;
   opacity: 0;
@@ -128,7 +124,20 @@
   display: block;
 }
 
-.anh-bien-doi img {
+.anh-bien-doi .image-cover {
+  position: relative !important;
+  width: 100% !important;
+  padding-top: 100% !important;
+  overflow: hidden !important;
+}
+
+.anh-bien-doi .image-cover img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
   opacity: 1 !important;
   transition: none !important;
 }
@@ -137,6 +146,14 @@
 .anh-bien-doi .img,
 .anh-bien-doi .image {
   background: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Override Flatsome inline width on box-image inside comparison row */
+.row.align-middle:not(.dropdown-sticky-row) .anh-bien-doi .box-image[style] {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 .anh-bien-doi img.loaded,
@@ -148,4 +165,282 @@
 .anh-bien-doi .loading::before,
 .anh-bien-doi .loading::after {
   display: none !important;
+}
+
+/* Hide default images before JS loads from TablePress */
+.anh-bien-doi img:not(.js-loaded) {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Hide Duplicate Toggle */
+.hide-duplicate-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 14px;
+  color: #333;
+  position: relative;
+  z-index: 10;
+  margin: 0;
+}
+
+.hide-duplicate-toggle input[type="checkbox"] {
+  display: none;
+}
+
+.hide-duplicate-toggle .toggle-slider {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 24px;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.hide-duplicate-toggle .toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: white;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.hide-duplicate-toggle input[type="checkbox"]:checked+.toggle-slider {
+  background-color: #000000 !important;
+}
+
+.hide-duplicate-toggle input[type="checkbox"]:checked+.toggle-slider::before {
+  transform: translateX(20px) !important;
+}
+
+/* Alternative with class for better compatibility */
+.hide-duplicate-toggle .toggle-slider.checked {
+  background-color: #000000 !important;
+}
+
+.hide-duplicate-toggle .toggle-slider.checked::before {
+  transform: translateX(20px) !important;
+}
+
+.hide-duplicate-toggle:hover .toggle-slider {
+  background-color: #b3b3b3;
+}
+
+.hide-duplicate-toggle input[type="checkbox"]:checked+.toggle-slider:hover {
+  background-color: #333333 !important;
+}
+
+.hide-duplicate-toggle .toggle-slider.checked:hover {
+  background-color: #333333 !important;
+}
+
+/* Hidden rows */
+.tablepress-id-1 tbody tr.duplicate-hidden {
+  display: none !important;
+}
+
+/* ==================================================
+   MOBILE HTML ELEMENT CONVENTION
+   - .mobile-hide-duplicate-toggle: HTML toggle trong image row
+   - .mobile-product-dropdown: HTML dropdown bên trong Image Box
+   - .mobile-image-row:  Row riêng cho mobile (mới)
+     Cấu trúc 5 col:
+       Col 1 (12/12): HTML toggle
+       Col 2 (6/12):  Image Box + HTML dropdown  ← sticky qua JS
+       Col 3 (6/12):  Image Box + HTML dropdown  ← sticky qua JS
+       Col 4 (6/12):  Text giá + Button          ← cuộn bình thường
+       Col 5 (6/12):  Text giá + Button          ← cuộn bình thường
+   - .desktop-image-row: Row ảnh cho desktop, thêm class này trong UX Builder
+   ================================================== */
+.mobile-hide-duplicate-toggle,
+.mobile-product-dropdown {
+  display: none !important;
+}
+
+.mobile-hide-duplicate-toggle .hide-duplicate-col {
+  padding: 0 !important;
+}
+
+/* Row mới dành riêng cho mobile: ẩn trên desktop */
+.mobile-image-row {
+  display: none !important;
+}
+
+/* Row ảnh desktop: ẩn col 1 (trống sau khi xóa toggle HTML) */
+/* .desktop-image-row>.col:nth-child(1) {
+  display: none !important;
+} */
+
+/* Col 2-4 của desktop-image-row: layout bình thường */
+.desktop-image-row>.col:nth-child(2),
+.desktop-image-row>.col:nth-child(3),
+.desktop-image-row>.col:nth-child(4) {
+  display: block !important;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE - NEW DEDICATED MOBILE ROW
+   Cấu trúc:
+   .mobile-image-row:
+     Col 12/12: HTML toggle (.mobile-hide-duplicate-toggle)
+     Col 6/12:  Image Box (.anh-bien-doi) + HTML dropdown + Text (giá) + Button
+     Col 6/12:  Image Box (.anh-bien-doi) + HTML dropdown + Text (giá) + Button
+   ============================================ */
+@media (max-width: 768px) {
+
+  /* Ẩn ảnh trong mobile row trước khi JS cập nhật */
+  .mobile-image-row .anh-bien-doi img:not(.js-loaded) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  /* Ẩn desktop row, hiển thị mobile row */
+  .desktop-image-row {
+    display: none !important;
+  }
+
+  .mobile-image-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    /* Sticky áp dụng trên col 1-3 qua JS, không ở tại đây */
+  }
+
+  /* Ẩn dropdown row desktop */
+  .dropdown-sticky-row {
+    display: none !important;
+  }
+
+  /* ── Layout các col trong .mobile-image-row ── */
+
+  /* Col 1 (12/12): toggle, full width */
+  .mobile-image-row>.col:nth-child(1) {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    padding: 0 15px 8px !important;
+    text-align: left;
+  }
+
+  /* Xóa padding thừa trong hide-duplicate-col */
+  .mobile-image-row .hide-duplicate-col,
+  .mobile-image-row .hide-duplicate-col>.col-inner {
+    padding: 0 !important;
+  }
+
+  /* Col 2 & 3 (6/12): 50% mỗi cột */
+  .mobile-image-row>.col:nth-child(2),
+  .mobile-image-row>.col:nth-child(3) {
+    width: 50% !important;
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    display: block !important;
+    padding: 0 !important;
+  }
+
+
+
+  /* Col 4 & 5 (6/12): giá + nút, cuộn bình thường */
+  .mobile-image-row>.col:nth-child(4),
+  .mobile-image-row>.col:nth-child(5) {
+    width: 50% !important;
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    display: block !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    text-align: center;
+  }
+
+  /* Hiển thị mobile toggle và dropdown */
+  .mobile-hide-duplicate-toggle {
+    display: inline-flex !important;
+    align-items: center;
+  }
+
+  .mobile-product-dropdown {
+    display: block !important;
+    position: static !important;
+    z-index: auto;
+    background: transparent;
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Hide duplicate toggle */
+  .hide-duplicate-toggle {
+    display: inline-flex;
+    font-size: 13px;
+    justify-content: flex-start;
+  }
+
+  .hide-duplicate-toggle .toggle-label {
+    order: 1;
+    margin-right: 10px;
+  }
+
+  .hide-duplicate-toggle .toggle-slider {
+    order: 2;
+  }
+
+  /* Dropdown button của mobile */
+  .mobile-image-row .dropdown-button {
+    font-size: 11px;
+    padding: 4px 28px 4px 8px;
+    margin-bottom: 8px;
+  }
+
+  .mobile-image-row .dropdown-icon {
+    width: 10px;
+    height: 10px;
+    right: 8px;
+  }
+
+  /* Ảnh: full width, tỉ lệ vuông */
+  .mobile-image-row .anh-bien-doi .box-image {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .mobile-image-row .anh-bien-doi .box-image .image-cover {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-top: 100% !important;
+  }
+
+  /* Text giá và button: layout bình thường */
+  .mobile-image-row .product-title {
+    font-size: 1.4rem !important;
+    text-align: center;
+  }
+
+  .mobile-image-row .button {
+    font-size: 12px !important;
+    padding: 8px 15px !important;
+    display: block;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  .mobile-image-row .box-text {
+    padding-bottom: 0px !important;
+  }
+
+  /* Xóa text-shadow của Flatsome .text-shadow-4 trong cột toggle */
+  .mobile-image-row .col .toggle-label {
+    text-shadow: none !important;
+  }
 }
