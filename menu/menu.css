@@ -1,0 +1,89 @@
+/* =============================================
+   MEGA MENU - Menu Title & Menu Link Styles
+   ============================================= */
+
+/* Section heading: GPS WATCHES, SENSORS, etc. */
+.section-menu {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: auto;
+}
+
+.section-menu .row-menu {}
+
+.col-menu {
+    max-height: 100vh;
+}
+
+/* Chỉ target col-inner bên trong col-menu — không ảnh hưởng col khác */
+.col-menu>.col-inner {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: clamp(16px, 2vw, 40px) clamp(20px, 3vw, 60px);
+    /* scale theo màn hình */
+    height: 60vh;
+    width: 100%;
+}
+
+/* Mỗi nhóm menu chiếm đúng 50% → 2 cột đều nhau (trừ column-gap 40px) */
+.col-menu>.col-inner>.ux-menu {
+    width: calc(50% - 40px);
+}
+
+.ux-menu-title-product {
+    /*     font-family: DINCOROS-Black; */
+    font-size: clamp(14px, 1.4vw, 26px);
+    /* min 14px → scale → max 26px */
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #626262;
+    padding: 0;
+    min-height: 2em;
+}
+
+/* Wrapper mỗi link item */
+.ux-menu-link-item {
+    /* 	font-family: PFDINTextPro-Medium; */
+    color: #333333;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0;
+    width: fit-content;
+    /* ép wrapper co lại bằng text → ::after không bị dài hơn */
+}
+
+.ux-menu-link-item .ux-menu-link__link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #555555;
+    font-size: clamp(11px, 1vw, 15px);
+    font-weight: 400;
+    line-height: 1.5;
+    position: relative;
+    padding-bottom: 1px;
+    width: fit-content;
+    transition: color 0.2s ease;
+}
+
+/* underline animate từ trái sang phải khi hover */
+.ux-menu-link-item .ux-menu-link__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #e8192c;
+    transition: width 0.25s ease;
+}
+
+.ux-menu-link-item .ux-menu-link__link:hover {
+    color: #e8192c;
+}
+
+.ux-menu-link-item .ux-menu-link__link:hover::after {
+    width: 100%;
+}
